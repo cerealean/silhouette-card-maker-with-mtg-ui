@@ -126,6 +126,20 @@
         "arch_b": {
             "width": "18in",
             "height": "12in"
+        },
+        "a4_borderless": {
+            "width": "307mm",
+            "height": "220mm",
+            "pdf_width": "297mm",
+            "pdf_height": "210mm",
+            "pdf_registration_inset": "5mm"
+        },
+        "letter_borderless": {
+            "width": "293.4mm",
+            "height": "229.9mm",
+            "pdf_width": "11in",
+            "pdf_height": "8.5in",
+            "pdf_registration_inset": "3mm"
         }
     },
     "layouts": {
@@ -991,6 +1005,28 @@
                 "num_cols": 5,
                 "registration": {
                     "length": "39.71mm"
+                }
+            }
+        },
+        "a4_borderless": {
+            "standard": {
+                "orientation": "portrait",
+                "version": 3,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "9.4mm"
+                }
+            }
+        },
+        "letter_borderless": {
+            "standard": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "7.87mm"
                 }
             }
         }

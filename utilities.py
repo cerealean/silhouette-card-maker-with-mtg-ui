@@ -107,6 +107,9 @@ class PaperSizeDef(BaseModel):
     width: str
     height: str
     aliases: Optional[List[str]] = None
+    pdf_width: Optional[str] = None
+    pdf_height: Optional[str] = None
+    pdf_registration_inset: Optional[str] = None
 
     @model_validator(mode='after')
     def width_gte_height(self) -> 'PaperSizeDef':
@@ -668,6 +671,7 @@ def generate_pdf(
     card_size: str,
     paper_size: str,
     registration: Registration,
+    mirror_registration: bool,
     only_fronts: bool,
     fit: FitMode,
     crop_string: str | None,
@@ -773,6 +777,9 @@ def generate_pdf(
         effective_inset = lr.inset or default_reg.inset
         effective_thickness = lr.thickness or default_reg.thickness
         effective_length = lr.length or default_reg.length
+        pdf_width = paper_size_def.width
+        pdf_height = paper_size_def.height
+        pdf_inset = effective_inset
 
     else:
         # Resolve aliases
@@ -804,6 +811,9 @@ def generate_pdf(
         effective_length = lr.length or default_reg.length
 
         template = template_name(paper_size, card_size, version)
+        pdf_width = paper_size_def.pdf_width or paper_size_def.width
+        pdf_height = paper_size_def.pdf_height or paper_size_def.height
+        pdf_inset = paper_size_def.pdf_registration_inset or effective_inset
 
     # Corner exclusion zone = configured mark length + padding constant
     total_exclusion_mm = size_convert.size_to_mm(default_reg.length) + page_manager.REG_PADDING_MM
@@ -811,9 +821,9 @@ def generate_pdf(
         orientation=orientation,
         card_width=card_size_def.width,
         card_height=card_size_def.height,
-        paper_width=paper_size_def.width,
-        paper_height=paper_size_def.height,
-        inset=effective_inset,
+        paper_width=pdf_width,
+        paper_height=pdf_height,
+        inset=pdf_inset,
         length=f"{total_exclusion_mm}mm",
         ppi=layout_config.ppi,
     )
@@ -855,11 +865,22 @@ def generate_pdf(
     # The baseline PPI is 300
     ppi_ratio = ppi / 300
 
-    inset_px = size_convert.size_to_pixel(effective_inset, layout_config.ppi)
-    label_margin_px = math.floor((inset_px - 2 * MINIMUM_BLEED) * ppi_ratio)
+    inset_px = size_convert.size_to_pixel(pdf_inset, layout_config.ppi)
+    label_margin_px = math.floor(max(0, inset_px - 2 * MINIMUM_BLEED) * ppi_ratio)
+    clamp_inset_min = size_convert.size_to_mm(pdf_inset) >= page_manager.MIN_REG_INSET_MM
 
     # Load an image with the registration marks
-    with page_manager.generate_reg_mark(paper_size_def.width, paper_size_def.height, effective_inset, effective_thickness, effective_length, layout_config.ppi, registration, orientation) as reg_im:
+    with page_manager.generate_reg_mark(
+        pdf_width,
+        pdf_height,
+        pdf_inset,
+        effective_thickness,
+        effective_length,
+        layout_config.ppi,
+        registration,
+        orientation,
+        clamp_inset_min=clamp_inset_min,
+    ) as reg_im:
         reg_im = reg_im.resize([math.floor(reg_im.width * ppi_ratio), math.floor(reg_im.height * ppi_ratio)])
 
         # Create the array that will store the filled templates
@@ -943,6 +964,13 @@ def generate_pdf(
 
             front_page = reg_im.copy()
             back_page = reg_im.copy()
+            if mirror_registration:
+                # Mirror registration marks according to long-side flip direction.
+                # Landscape pages flip top/bottom; portrait pages flip left/right.
+                if orientation == Orientation.PORTRAIT:
+                    back_page = ImageOps.mirror(reg_im.copy())
+                else:
+                    back_page = ImageOps.flip(reg_im.copy())
 
             # Create front layout
             draw_card_layout(

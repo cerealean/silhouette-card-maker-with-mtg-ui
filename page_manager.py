@@ -38,6 +38,7 @@ def generate_reg_mark(
     dpi: int,
     registration: Registration,
     orientation: Orientation = Orientation.LANDSCAPE,
+    clamp_inset_min: bool = True,
 ) -> Image.Image:
     """Generate a registration mark image for the given paper size.
 
@@ -65,10 +66,15 @@ def generate_reg_mark(
     thickness_pt = size_convert.size_to_pt(thickness)
     length_mm = size_convert.size_to_mm(length)
 
-    # Constrain registration mark parameters within valid ranges
+    # Constrain registration mark parameters within valid ranges.
+    # Some workflows intentionally render marks to the paper edge (inset = 0)
+    # and rely on a larger virtual media size in Silhouette Studio.
     length_mm = max(MIN_REG_LENGTH_MM, min(length_mm, MAX_REG_LENGTH_MM))
     thickness_mm = max(MIN_REG_THICKNESS_MM, min(thickness_mm, MAX_REG_THICKNESS_MM))
-    inset_mm = max(MIN_REG_INSET_MM, min(inset_mm, MAX_REG_INSET_MM))
+    if clamp_inset_min:
+        inset_mm = max(MIN_REG_INSET_MM, min(inset_mm, MAX_REG_INSET_MM))
+    else:
+        inset_mm = min(inset_mm, MAX_REG_INSET_MM)
 
     # Create figure sized to the paper dimensions
     fig = plt.figure(figsize=(paper_width_mm / 25.4, paper_height_mm / 25.4), dpi=dpi)

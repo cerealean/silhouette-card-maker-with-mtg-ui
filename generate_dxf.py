@@ -31,6 +31,28 @@ card_size_choices = get_all_card_size_names(layout_config)
 paper_size_choices = get_all_paper_size_names(layout_config)
 
 
+def get_cut_template_inset(paper_def, default_inset: str) -> str:
+    """Return the inset to use for DXF layout generation.
+
+    If a paper defines PDF overrides (pdf_width/pdf_height), map the PDF inset
+    into the larger virtual media so card-to-registration geometry stays aligned:
+
+        template_inset = ((paper - pdf) / 2) + pdf_inset
+    """
+    if not paper_def.pdf_width or not paper_def.pdf_height:
+        return default_inset
+
+    border_w_mm = (size_convert.size_to_mm(paper_def.width) - size_convert.size_to_mm(paper_def.pdf_width)) / 2
+    border_h_mm = (size_convert.size_to_mm(paper_def.height) - size_convert.size_to_mm(paper_def.pdf_height)) / 2
+
+    if border_w_mm < 0 or border_h_mm < 0:
+        return default_inset
+
+    pdf_inset_mm = size_convert.size_to_mm(paper_def.pdf_registration_inset or "0mm")
+    inset_mm = min(border_w_mm, border_h_mm) + pdf_inset_mm
+    return f"{round(inset_mm, 4)}mm"
+
+
 def generate_single_dxf(
     card_size: str,
     paper_size: str,
@@ -47,6 +69,7 @@ def generate_single_dxf(
     layout_def = config.layouts[paper_size][card_size]
     reg = config.defaults.registration
     ppi = config.ppi
+    template_inset = get_cut_template_inset(paper_def, reg.inset)
 
     orientation = layout_def.orientation
     version = layout_def.version
@@ -58,7 +81,7 @@ def generate_single_dxf(
         card_height=card_def.height,
         paper_width=paper_def.width,
         paper_height=paper_def.height,
-        inset=reg.inset,
+        inset=template_inset,
         length=f"{total_length_mm}mm",
         ppi=ppi,
     )
@@ -252,13 +275,17 @@ def cli(paper_size, card_size, card_height, card_width, card_radius, paper_heigh
     preferred = Orientation.PORTRAIT if card_w_px == card_h_px else Orientation.LANDSCAPE
 
     try:
+        template_inset = reg.inset
+        if has_paper_size:
+            template_inset = get_cut_template_inset(paper_def, reg.inset)
+
         resolved_orientation, computed = find_best_orientation(
             OrientationMode(orientation),
             resolved_card_width,
             resolved_card_height,
             resolved_paper_width,
             resolved_paper_height,
-            inset=reg.inset,
+            inset=template_inset,
             length=f"{total_length_mm}mm",
             ppi=ppi,
             preferred=preferred,
@@ -408,6 +435,7 @@ def generate_all_optimized(config: LayoutConfig, out: Path):
                 reg = config.defaults.registration
                 ppi = config.ppi
                 total_length_mm = size_convert.size_to_mm(reg.length) + page_manager.REG_PADDING_MM
+                template_inset = get_cut_template_inset(paper_def, reg.inset)
 
                 # Check if a layout already exists for this combination
                 existing = (
@@ -436,7 +464,7 @@ def generate_all_optimized(config: LayoutConfig, out: Path):
                         card_def.height,
                         paper_def.width,
                         paper_def.height,
-                        inset=reg.inset,
+                        inset=template_inset,
                         length=f"{total_length_mm}mm",
                         ppi=ppi,
                         preferred=preferred,
