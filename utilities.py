@@ -866,7 +866,11 @@ def generate_pdf(
     ppi_ratio = ppi / 300
 
     inset_px = size_convert.size_to_pixel(pdf_inset, layout_config.ppi)
-    label_margin_px = math.floor(max(0, inset_px - 2 * MINIMUM_BLEED) * ppi_ratio)
+    # For borderless papers the pdf_inset is very small (3mm) so the label
+    # would land at the paper edge. Use the default registration inset
+    # (10mm) instead, which matches where content actually sits.
+    label_inset_px = size_convert.size_to_pixel(effective_inset, layout_config.ppi)
+    label_margin_px = math.floor(max(0, label_inset_px - 2 * MINIMUM_BLEED) * ppi_ratio)
     clamp_inset_min = size_convert.size_to_mm(pdf_inset) >= page_manager.MIN_REG_INSET_MM
 
     # Load an image with the registration marks

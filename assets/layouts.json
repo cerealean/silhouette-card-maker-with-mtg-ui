@@ -128,11 +128,11 @@
             "height": "12in"
         },
         "a4_borderless": {
-            "width": "307mm",
-            "height": "220mm",
+            "width": "311mm",
+            "height": "224mm",
             "pdf_width": "297mm",
             "pdf_height": "210mm",
-            "pdf_registration_inset": "5mm"
+            "pdf_registration_inset": "3mm"
         },
         "letter_borderless": {
             "width": "293.4mm",
@@ -140,13 +140,34 @@
             "pdf_width": "11in",
             "pdf_height": "8.5in",
             "pdf_registration_inset": "3mm"
+        },
+        "tabloid_borderless": {
+            "width": "445.8mm",
+            "height": "293.4mm",
+            "pdf_width": "17in",
+            "pdf_height": "11in",
+            "pdf_registration_inset": "3mm"
+        },
+        "a3_borderless": {
+            "width": "434mm",
+            "height": "311mm",
+            "pdf_width": "420mm",
+            "pdf_height": "297mm",
+            "pdf_registration_inset": "3mm"
+        },
+        "arch_b_borderless": {
+            "width": "471.2mm",
+            "height": "318.8mm",
+            "pdf_width": "18in",
+            "pdf_height": "12in",
+            "pdf_registration_inset": "3mm"
         }
     },
     "layouts": {
         "letter": {
             "bridge": {
                 "orientation": "landscape",
-                "version": 4,
+                "version": 3,
                 "num_rows": 2,
                 "num_cols": 4,
                 "registration": {
@@ -155,7 +176,7 @@
             },
             "bridge_square": {
                 "orientation": "portrait",
-                "version": 3,
+                "version": 2,
                 "num_rows": 4,
                 "num_cols": 3,
                 "registration": {
@@ -164,7 +185,7 @@
             },
             "business": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 5,
                 "num_cols": 2,
                 "registration": {
@@ -173,7 +194,7 @@
             },
             "credit": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 2,
                 "registration": {
@@ -182,7 +203,7 @@
             },
             "domino": {
                 "orientation": "landscape",
-                "version": 3,
+                "version": 2,
                 "num_rows": 2,
                 "num_cols": 5,
                 "registration": {
@@ -191,7 +212,7 @@
             },
             "domino_square": {
                 "orientation": "portrait",
-                "version": 3,
+                "version": 2,
                 "num_rows": 5,
                 "num_cols": 4,
                 "registration": {
@@ -200,7 +221,7 @@
             },
             "euro_business": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 3,
                 "registration": {
@@ -209,7 +230,7 @@
             },
             "euro_mini": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 4,
                 "registration": {
@@ -218,7 +239,7 @@
             },
             "japanese": {
                 "orientation": "landscape",
-                "version": 3,
+                "version": 2,
                 "num_rows": 2,
                 "num_cols": 4,
                 "registration": {
@@ -227,7 +248,7 @@
             },
             "jumbo": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 1,
                 "num_cols": 2,
                 "registration": {
@@ -236,7 +257,7 @@
             },
             "micro": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 7,
                 "registration": {
@@ -245,7 +266,7 @@
             },
             "mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 5,
                 "registration": {
@@ -254,7 +275,7 @@
             },
             "poker": {
                 "orientation": "landscape",
-                "version": 4,
+                "version": 3,
                 "num_rows": 2,
                 "num_cols": 4,
                 "registration": {
@@ -263,7 +284,7 @@
             },
             "standard": {
                 "orientation": "landscape",
-                "version": 6,
+                "version": 5,
                 "num_rows": 2,
                 "num_cols": 4,
                 "registration": {
@@ -272,7 +293,7 @@
             },
             "standard_double": {
                 "orientation": "portrait",
-                "version": 3,
+                "version": 2,
                 "num_rows": 2,
                 "num_cols": 2,
                 "registration": {
@@ -281,7 +302,7 @@
             },
             "tarot": {
                 "orientation": "portrait",
-                "version": 3,
+                "version": 2,
                 "num_rows": 2,
                 "num_cols": 2,
                 "registration": {
@@ -290,7 +311,7 @@
             },
             "american_mini": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 4,
                 "registration": {
@@ -299,7 +320,7 @@
             },
             "catan": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 3,
                 "registration": {
@@ -307,10 +328,10 @@
                 }
             },
             "70mm_square": {
-                "orientation": "landscape",
+                "orientation": "portrait",
                 "version": 2,
-                "num_rows": 2,
-                "num_cols": 3,
+                "num_rows": 3,
+                "num_cols": 2,
                 "registration": {
                     "length": "25.99mm"
                 }
@@ -319,7 +340,7 @@
         "tabloid": {
             "bridge": {
                 "orientation": "portrait",
-                "version": 3,
+                "version": 2,
                 "num_rows": 4,
                 "num_cols": 4,
                 "registration": {
@@ -328,7 +349,7 @@
             },
             "bridge_square": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 7,
                 "num_cols": 4,
                 "registration": {
@@ -337,7 +358,7 @@
             },
             "business": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 5,
                 "num_cols": 4,
                 "registration": {
@@ -346,7 +367,7 @@
             },
             "credit": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 4,
                 "registration": {
@@ -355,7 +376,7 @@
             },
             "domino": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 5,
                 "registration": {
@@ -364,7 +385,7 @@
             },
             "domino_square": {
                 "orientation": "portrait",
-                "version": 3,
+                "version": 2,
                 "num_rows": 9,
                 "num_cols": 5,
                 "registration": {
@@ -373,7 +394,7 @@
             },
             "euro_business": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 7,
                 "num_cols": 3,
                 "registration": {
@@ -382,7 +403,7 @@
             },
             "euro_mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 9,
                 "registration": {
@@ -391,7 +412,7 @@
             },
             "japanese": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 4,
                 "registration": {
@@ -400,7 +421,7 @@
             },
             "jumbo": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 1,
                 "num_cols": 4,
                 "registration": {
@@ -409,7 +430,7 @@
             },
             "micro": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 9,
                 "num_cols": 7,
                 "registration": {
@@ -418,7 +439,7 @@
             },
             "mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 8,
                 "registration": {
@@ -427,7 +448,7 @@
             },
             "poker": {
                 "orientation": "portrait",
-                "version": 3,
+                "version": 2,
                 "num_rows": 4,
                 "num_cols": 4,
                 "registration": {
@@ -436,7 +457,7 @@
             },
             "standard": {
                 "orientation": "portrait",
-                "version": 5,
+                "version": 4,
                 "num_rows": 4,
                 "num_cols": 4,
                 "registration": {
@@ -445,7 +466,7 @@
             },
             "standard_double": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 2,
                 "num_cols": 4,
                 "registration": {
@@ -454,7 +475,7 @@
             },
             "tarot": {
                 "orientation": "landscape",
-                "version": 3,
+                "version": 2,
                 "num_rows": 2,
                 "num_cols": 5,
                 "registration": {
@@ -463,7 +484,7 @@
             },
             "american_mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 9,
                 "registration": {
@@ -472,7 +493,7 @@
             },
             "catan": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 7,
                 "registration": {
@@ -480,10 +501,10 @@
                 }
             },
             "70mm_square": {
-                "orientation": "landscape",
+                "orientation": "portrait",
                 "version": 2,
-                "num_rows": 3,
-                "num_cols": 5,
+                "num_rows": 5,
+                "num_cols": 3,
                 "registration": {
                     "length": "27.01mm"
                 }
@@ -492,7 +513,7 @@
         "a4": {
             "bridge": {
                 "orientation": "portrait",
-                "version": 4,
+                "version": 3,
                 "num_rows": 3,
                 "num_cols": 3,
                 "registration": {
@@ -501,7 +522,7 @@
             },
             "bridge_square": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 3,
                 "registration": {
@@ -510,7 +531,7 @@
             },
             "business": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 5,
                 "num_cols": 2,
                 "registration": {
@@ -519,7 +540,7 @@
             },
             "credit": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 5,
                 "num_cols": 2,
                 "registration": {
@@ -528,7 +549,7 @@
             },
             "domino": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 2,
                 "num_cols": 5,
                 "registration": {
@@ -537,7 +558,7 @@
             },
             "domino_square": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 5,
                 "num_cols": 4,
                 "registration": {
@@ -546,7 +567,7 @@
             },
             "euro_business": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 3,
                 "registration": {
@@ -555,7 +576,7 @@
             },
             "euro_mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 2,
                 "num_cols": 6,
                 "registration": {
@@ -564,7 +585,7 @@
             },
             "japanese": {
                 "orientation": "portrait",
-                "version": 4,
+                "version": 3,
                 "num_rows": 3,
                 "num_cols": 3,
                 "registration": {
@@ -573,7 +594,7 @@
             },
             "jumbo": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 1,
                 "num_cols": 3,
                 "registration": {
@@ -582,7 +603,7 @@
             },
             "micro": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 6,
                 "num_cols": 5,
                 "registration": {
@@ -591,7 +612,7 @@
             },
             "mini": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 4,
                 "registration": {
@@ -600,7 +621,7 @@
             },
             "poker": {
                 "orientation": "landscape",
-                "version": 3,
+                "version": 2,
                 "num_rows": 2,
                 "num_cols": 4,
                 "registration": {
@@ -609,7 +630,7 @@
             },
             "standard": {
                 "orientation": "landscape",
-                "version": 5,
+                "version": 4,
                 "num_rows": 2,
                 "num_cols": 4,
                 "registration": {
@@ -618,7 +639,7 @@
             },
             "standard_double": {
                 "orientation": "portrait",
-                "version": 3,
+                "version": 2,
                 "num_rows": 2,
                 "num_cols": 2,
                 "registration": {
@@ -627,7 +648,7 @@
             },
             "tarot": {
                 "orientation": "portrait",
-                "version": 3,
+                "version": 2,
                 "num_rows": 2,
                 "num_cols": 2,
                 "registration": {
@@ -636,7 +657,7 @@
             },
             "american_mini": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 4,
                 "registration": {
@@ -645,7 +666,7 @@
             },
             "catan": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 2,
                 "num_cols": 5,
                 "registration": {
@@ -653,10 +674,10 @@
                 }
             },
             "70mm_square": {
-                "orientation": "landscape",
+                "orientation": "portrait",
                 "version": 2,
-                "num_rows": 2,
-                "num_cols": 3,
+                "num_rows": 3,
+                "num_cols": 2,
                 "registration": {
                     "length": "30.9mm"
                 }
@@ -665,7 +686,7 @@
         "a3": {
             "bridge": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 6,
                 "registration": {
@@ -674,7 +695,7 @@
             },
             "bridge_square": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 6,
                 "num_cols": 4,
                 "registration": {
@@ -683,7 +704,7 @@
             },
             "business": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 7,
                 "num_cols": 3,
                 "registration": {
@@ -692,7 +713,7 @@
             },
             "credit": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 7,
                 "num_cols": 3,
                 "registration": {
@@ -701,7 +722,7 @@
             },
             "domino": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 8,
                 "registration": {
@@ -710,7 +731,7 @@
             },
             "domino_square": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 8,
                 "num_cols": 6,
                 "registration": {
@@ -719,7 +740,7 @@
             },
             "euro_business": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 7,
                 "num_cols": 3,
                 "registration": {
@@ -728,7 +749,7 @@
             },
             "euro_mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 8,
                 "registration": {
@@ -737,7 +758,7 @@
             },
             "japanese": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 6,
                 "registration": {
@@ -746,7 +767,7 @@
             },
             "jumbo": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 2,
                 "num_cols": 3,
                 "registration": {
@@ -755,7 +776,7 @@
             },
             "micro": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 6,
                 "num_cols": 11,
                 "registration": {
@@ -764,7 +785,7 @@
             },
             "mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 8,
                 "registration": {
@@ -773,7 +794,7 @@
             },
             "poker": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 4,
                 "registration": {
@@ -782,7 +803,7 @@
             },
             "standard": {
                 "orientation": "landscape",
-                "version": 5,
+                "version": 4,
                 "num_rows": 3,
                 "num_cols": 6,
                 "registration": {
@@ -791,7 +812,7 @@
             },
             "standard_double": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 3,
                 "registration": {
@@ -800,7 +821,7 @@
             },
             "tarot": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 2,
                 "num_cols": 5,
                 "registration": {
@@ -809,7 +830,7 @@
             },
             "american_mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 9,
                 "registration": {
@@ -818,7 +839,7 @@
             },
             "catan": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 7,
                 "registration": {
@@ -826,10 +847,10 @@
                 }
             },
             "70mm_square": {
-                "orientation": "landscape",
+                "orientation": "portrait",
                 "version": 2,
-                "num_rows": 3,
-                "num_cols": 5,
+                "num_rows": 5,
+                "num_cols": 3,
                 "registration": {
                     "length": "30.9mm"
                 }
@@ -838,7 +859,7 @@
         "arch_b": {
             "bridge": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 7,
                 "registration": {
@@ -847,7 +868,7 @@
             },
             "bridge_square": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 7,
                 "num_cols": 4,
                 "registration": {
@@ -856,7 +877,7 @@
             },
             "business": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 8,
                 "num_cols": 3,
                 "registration": {
@@ -865,7 +886,7 @@
             },
             "credit": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 7,
                 "num_cols": 3,
                 "registration": {
@@ -874,7 +895,7 @@
             },
             "domino": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 9,
                 "registration": {
@@ -883,7 +904,7 @@
             },
             "domino_square": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 9,
                 "num_cols": 6,
                 "registration": {
@@ -892,7 +913,7 @@
             },
             "euro_business": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 7,
                 "num_cols": 3,
                 "registration": {
@@ -901,7 +922,7 @@
             },
             "euro_mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 9,
                 "registration": {
@@ -910,7 +931,7 @@
             },
             "japanese": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 7,
                 "registration": {
@@ -919,7 +940,7 @@
             },
             "jumbo": {
                 "orientation": "portrait",
-                "version": 3,
+                "version": 2,
                 "num_rows": 3,
                 "num_cols": 3,
                 "registration": {
@@ -928,7 +949,7 @@
             },
             "micro": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 6,
                 "num_cols": 12,
                 "registration": {
@@ -937,7 +958,7 @@
             },
             "mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 9,
                 "registration": {
@@ -946,7 +967,7 @@
             },
             "poker": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 6,
                 "registration": {
@@ -955,7 +976,7 @@
             },
             "standard": {
                 "orientation": "landscape",
-                "version": 4,
+                "version": 3,
                 "num_rows": 3,
                 "num_cols": 6,
                 "registration": {
@@ -964,7 +985,7 @@
             },
             "standard_double": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 3,
                 "num_cols": 3,
                 "registration": {
@@ -972,17 +993,17 @@
                 }
             },
             "tarot": {
-                "orientation": "portrait",
+                "orientation": "landscape",
                 "version": 2,
-                "num_rows": 3,
-                "num_cols": 4,
+                "num_rows": 2,
+                "num_cols": 6,
                 "registration": {
-                    "length": "35.14mm"
+                    "length": "19.9mm"
                 }
             },
             "american_mini": {
                 "orientation": "landscape",
-                "version": 2,
+                "version": 1,
                 "num_rows": 4,
                 "num_cols": 10,
                 "registration": {
@@ -991,7 +1012,7 @@
             },
             "catan": {
                 "orientation": "portrait",
-                "version": 2,
+                "version": 1,
                 "num_rows": 5,
                 "num_cols": 5,
                 "registration": {
@@ -999,10 +1020,10 @@
                 }
             },
             "70mm_square": {
-                "orientation": "landscape",
+                "orientation": "portrait",
                 "version": 2,
-                "num_rows": 4,
-                "num_cols": 5,
+                "num_rows": 5,
+                "num_cols": 4,
                 "registration": {
                     "length": "39.71mm"
                 }
@@ -1015,7 +1036,169 @@
                 "num_rows": 3,
                 "num_cols": 3,
                 "registration": {
-                    "length": "9.4mm"
+                    "length": "11.01mm"
+                }
+            },
+            "american_mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 6,
+                "registration": {
+                    "length": "18.12mm"
+                }
+            },
+            "bridge": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 5,
+                "registration": {
+                    "length": "11.26mm"
+                }
+            },
+            "bridge_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 3,
+                "registration": {
+                    "length": "13.8mm"
+                }
+            },
+            "catan": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 5,
+                "registration": {
+                    "length": "20.07mm"
+                }
+            },
+            "business": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 2,
+                "registration": {
+                    "length": "14.65mm"
+                }
+            },
+            "credit": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 2,
+                "registration": {
+                    "length": "14.48mm"
+                }
+            },
+            "domino": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 6,
+                "registration": {
+                    "length": "11.26mm"
+                }
+            },
+            "domino_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 6,
+                "num_cols": 4,
+                "registration": {
+                    "length": "9.91mm"
+                }
+            },
+            "euro_business": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 2,
+                "registration": {
+                    "length": "15.16mm"
+                }
+            },
+            "euro_mini": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 4,
+                "registration": {
+                    "length": "10.75mm"
+                }
+            },
+            "japanese": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "13.97mm"
+                }
+            },
+            "jumbo": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 2,
+                "registration": {
+                    "length": "11.26mm"
+                }
+            },
+            "micro": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 6,
+                "num_cols": 6,
+                "registration": {
+                    "length": "7.7mm"
+                }
+            },
+            "mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 6,
+                "registration": {
+                    "length": "7.7mm"
+                }
+            },
+            "poker": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "9.57mm"
+                }
+            },
+            "standard_double": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 2,
+                "registration": {
+                    "length": "17.61mm"
+                }
+            },
+            "tarot": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 1,
+                "num_cols": 4,
+                "registration": {
+                    "length": "40.39mm"
+                }
+            },
+            "70mm_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 2,
+                "registration": {
+                    "length": "30.06mm"
                 }
             }
         },
@@ -1028,27 +1211,691 @@
                 "registration": {
                     "length": "7.87mm"
                 }
+            },
+            "american_mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 6,
+                "registration": {
+                    "length": "9.31mm"
+                }
+            },
+            "bridge": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "16.68mm"
+                }
+            },
+            "bridge_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 3,
+                "registration": {
+                    "length": "19.22mm"
+                }
+            },
+            "catan": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "21.42mm"
+                }
+            },
+            "business": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 2,
+                "registration": {
+                    "length": "14.14mm"
+                }
+            },
+            "credit": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "21.42mm"
+                }
+            },
+            "domino": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 6,
+                "registration": {
+                    "length": "14.14mm"
+                }
+            },
+            "domino_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 6,
+                "num_cols": 4,
+                "registration": {
+                    "length": "12.87mm"
+                }
+            },
+            "euro_business": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "19.9mm"
+                }
+            },
+            "euro_mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 5,
+                "registration": {
+                    "length": "22.78mm"
+                }
+            },
+            "japanese": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "13.89mm"
+                }
+            },
+            "jumbo": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 1,
+                "num_cols": 3,
+                "registration": {
+                    "length": "33.78mm"
+                }
+            },
+            "micro": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 8,
+                "registration": {
+                    "length": "12.87mm"
+                }
+            },
+            "mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 6,
+                "registration": {
+                    "length": "7.2mm"
+                }
+            },
+            "poker": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "7.2mm"
+                }
+            },
+            "standard_double": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 2,
+                "registration": {
+                    "length": "15.07mm"
+                }
+            },
+            "tarot": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 2,
+                "registration": {
+                    "length": "33.19mm"
+                }
+            },
+            "70mm_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 2,
+                "registration": {
+                    "length": "33.02mm"
+                }
+            }
+        },
+        "tabloid_borderless": {
+            "american_mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 10,
+                "registration": {
+                    "length": "7.54mm"
+                }
+            },
+            "bridge": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 7,
+                "registration": {
+                    "length": "7.79mm"
+                }
+            },
+            "bridge_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 7,
+                "num_cols": 4,
+                "registration": {
+                    "length": "19.22mm"
+                }
+            },
+            "catan": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 7,
+                "registration": {
+                    "length": "18.71mm"
+                }
+            },
+            "business": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 7,
+                "num_cols": 3,
+                "registration": {
+                    "length": "30.06mm"
+                }
+            },
+            "credit": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 7,
+                "num_cols": 3,
+                "registration": {
+                    "length": "18.71mm"
+                }
+            },
+            "domino": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 9,
+                "registration": {
+                    "length": "6.52mm"
+                }
+            },
+            "domino_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 9,
+                "num_cols": 6,
+                "registration": {
+                    "length": "6.52mm"
+                }
+            },
+            "euro_business": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 7,
+                "num_cols": 3,
+                "registration": {
+                    "length": "15.16mm"
+                }
+            },
+            "euro_mini": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 6,
+                "num_cols": 5,
+                "registration": {
+                    "length": "22.78mm"
+                }
+            },
+            "japanese": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 6,
+                "registration": {
+                    "length": "31.41mm"
+                }
+            },
+            "jumbo": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 2,
+                "registration": {
+                    "length": "45.89mm"
+                }
+            },
+            "micro": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 6,
+                "num_cols": 12,
+                "registration": {
+                    "length": "14.14mm"
+                }
+            },
+            "mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 9,
+                "registration": {
+                    "length": "6.52mm"
+                }
+            },
+            "poker": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 6,
+                "registration": {
+                    "length": "17.95mm"
+                }
+            },
+            "standard": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 6,
+                "registration": {
+                    "length": "19.47mm"
+                }
+            },
+            "standard_double": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "21.42mm"
+                }
+            },
+            "tarot": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 6,
+                "registration": {
+                    "length": "14.14mm"
+                }
+            },
+            "70mm_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 3,
+                "registration": {
+                    "length": "34.04mm"
+                }
+            }
+        },
+        "a3_borderless": {
+            "american_mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 9,
+                "registration": {
+                    "length": "16.34mm"
+                }
+            },
+            "bridge": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 7,
+                "registration": {
+                    "length": "9.57mm"
+                }
+            },
+            "bridge_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 6,
+                "num_cols": 5,
+                "registration": {
+                    "length": "31.07mm"
+                }
+            },
+            "catan": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 5,
+                "registration": {
+                    "length": "6.69mm"
+                }
+            },
+            "business": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 7,
+                "num_cols": 3,
+                "registration": {
+                    "length": "24.13mm"
+                }
+            },
+            "credit": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 7,
+                "num_cols": 3,
+                "registration": {
+                    "length": "14.48mm"
+                }
+            },
+            "domino": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 9,
+                "registration": {
+                    "length": "9.57mm"
+                }
+            },
+            "domino_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 9,
+                "num_cols": 6,
+                "registration": {
+                    "length": "7.7mm"
+                }
+            },
+            "euro_business": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 7,
+                "num_cols": 3,
+                "registration": {
+                    "length": "15.49mm"
+                }
+            },
+            "euro_mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 8,
+                "registration": {
+                    "length": "25.15mm"
+                }
+            },
+            "japanese": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 6,
+                "registration": {
+                    "length": "25.48mm"
+                }
+            },
+            "jumbo": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 4,
+                "registration": {
+                    "length": "25.99mm"
+                }
+            },
+            "micro": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 6,
+                "num_cols": 12,
+                "registration": {
+                    "length": "8.21mm"
+                }
+            },
+            "mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 9,
+                "registration": {
+                    "length": "15.32mm"
+                }
+            },
+            "poker": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 6,
+                "registration": {
+                    "length": "12.11mm"
+                }
+            },
+            "standard": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 6,
+                "registration": {
+                    "length": "13.63mm"
+                }
+            },
+            "standard_double": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 3,
+                "registration": {
+                    "length": "15.49mm"
+                }
+            },
+            "tarot": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 4,
+                "registration": {
+                    "length": "23.45mm"
+                }
+            },
+            "70mm_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 4,
+                "registration": {
+                    "length": "28.19mm"
+                }
+            }
+        },
+        "arch_b_borderless": {
+            "american_mini": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 7,
+                "num_cols": 6,
+                "registration": {
+                    "length": "22.01mm"
+                }
+            },
+            "bridge": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 7,
+                "registration": {
+                    "length": "20.49mm"
+                }
+            },
+            "bridge_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 7,
+                "num_cols": 5,
+                "registration": {
+                    "length": "20.49mm"
+                }
+            },
+            "catan": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 5,
+                "registration": {
+                    "length": "21.76mm"
+                }
+            },
+            "business": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 5,
+                "registration": {
+                    "length": "18.54mm"
+                }
+            },
+            "credit": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 5,
+                "registration": {
+                    "length": "10.58mm"
+                }
+            },
+            "domino": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 6,
+                "registration": {
+                    "length": "11.6mm"
+                }
+            },
+            "domino_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 9,
+                "num_cols": 6,
+                "registration": {
+                    "length": "19.22mm"
+                }
+            },
+            "euro_business": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 5,
+                "registration": {
+                    "length": "9.23mm"
+                }
+            },
+            "euro_mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 9,
+                "registration": {
+                    "length": "21.08mm"
+                }
+            },
+            "japanese": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 7,
+                "registration": {
+                    "length": "17.86mm"
+                }
+            },
+            "jumbo": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 5,
+                "registration": {
+                    "length": "7.79mm"
+                }
+            },
+            "micro": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 9,
+                "num_cols": 9,
+                "registration": {
+                    "length": "19.22mm"
+                }
+            },
+            "mini": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 4,
+                "num_cols": 9,
+                "registration": {
+                    "length": "19.22mm"
+                }
+            },
+            "poker": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 5,
+                "num_cols": 4,
+                "registration": {
+                    "length": "19.22mm"
+                }
+            },
+            "standard": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 3,
+                "num_cols": 7,
+                "registration": {
+                    "length": "14.9mm"
+                }
+            },
+            "standard_double": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 5,
+                "registration": {
+                    "length": "21.51mm"
+                }
+            },
+            "tarot": {
+                "orientation": "landscape",
+                "version": 1,
+                "num_rows": 2,
+                "num_cols": 6,
+                "registration": {
+                    "length": "26.84mm"
+                }
+            },
+            "70mm_square": {
+                "orientation": "portrait",
+                "version": 1,
+                "num_rows": 6,
+                "num_cols": 4,
+                "registration": {
+                    "length": "11.09mm"
+                }
             }
         }
     },
     "specialty_layouts": {
-        "a4-commander": {
-            "card_size": {
-                "width": "17.82mm",
-                "height": "24.89mm",
-                "radius": "0.85mm"
-            },
-            "paper_size": {
-                "name": "a4"
-            },
-            "orientation": "portrait",
-            "version": 1,
-            "num_rows": 10,
-            "num_cols": 10,
-            "registration": {
-                "length": "7.03mm"
-            }
-        },
         "letter-commander": {
             "card_size": {
                 "width": "16.86mm",
@@ -1059,7 +1906,7 @@
                 "name": "letter"
             },
             "orientation": "portrait",
-            "version": 2,
+            "version": 1,
             "num_rows": 10,
             "num_cols": 10,
             "registration": {
