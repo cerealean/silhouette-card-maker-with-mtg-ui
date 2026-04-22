@@ -145,7 +145,7 @@ python dxf_to_studio3.py batch --unit mm --new
 
 The `batch` command processes all DXF files in `cutting_templates/dxf/` and `cutting_templates/borderless/dxf/`:
 
-- `--unit` (required): Specify `mm` or `in` to match your Silhouette Studio's unit setting. Registration mark values are automatically converted to inches internally.
+- `--unit` (required): Specify `mm` or `in` to match your Silhouette Studio's unit setting. All registration mark values will be passed in this unit.
 - `--new`: Only convert layouts whose `.studio3` file is missing (based on `layouts.json` versions). Omit this flag to convert all DXF files.
 - `--dry_run`: Preview what would be converted without launching Silhouette Studio.
 
