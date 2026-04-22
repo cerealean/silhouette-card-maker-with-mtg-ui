@@ -26,7 +26,6 @@ specialty_choices = get_all_specialty_layout_names(layout_config)
 @click.option("--card_size", default="standard", type=click.Choice(card_size_choices, case_sensitive=False), show_default=True, help="The desired card size.")
 @click.option("--paper_size", default="letter", type=click.Choice(paper_size_choices, case_sensitive=False), show_default=True, help="The desired paper size.")
 @click.option("--registration", default=Registration.THREE.value, type=click.Choice([t.value for t in Registration], case_sensitive=False), show_default=True, help="The desired registration.")
-@click.option("--mirror_registration", default=False, is_flag=True, help="Mirror and flip registration marks on back pages to help check double-sided alignment.")
 @click.option("--specialty", default=None, type=click.Choice(specialty_choices, case_sensitive=False), help="Use a specialty layout. Overrides card_size, paper_size, and registration settings.")
 
 @click.option("--only_fronts", default=False, is_flag=True, help="Only use the card fronts, exclude the card backs.")
@@ -56,7 +55,6 @@ def cli(
     card_size,
     paper_size,
     registration,
-    mirror_registration,
     specialty,
     only_fronts,
     fit,
@@ -80,7 +78,6 @@ def cli(
         card_size,
         paper_size,
         registration,
-        mirror_registration,
         only_fronts,
         fit,
         crop,
