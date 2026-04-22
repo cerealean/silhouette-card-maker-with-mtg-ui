@@ -9,9 +9,9 @@ positions dynamically using page_manager. Batch operations output to:
 
 Usage:
     # Batch generation (uses standard directory structure)
-    python generate_dxf.py batch --all
-    python generate_dxf.py batch --new
-    python generate_dxf.py batch --optimize
+    python generate_dxf.py batch              # Generate missing templates (default)
+    python generate_dxf.py batch --all        # Regenerate all templates
+    python generate_dxf.py batch --optimize   # Optimize orientations for all templates
 
     # Single file generation (custom output path)
     python generate_dxf.py single output.dxf --card_size poker --paper_size letter
@@ -318,18 +318,25 @@ def single(output_file, paper_size, card_size, card_height, card_width, card_rad
 
 
 @cli.command()
-@click.option("--all", "generate_all", is_flag=True, help="Generate DXF files for all paper/card/variant combinations.")
-@click.option("--new", "generate_new", is_flag=True, help="Generate DXF files only for missing templates.")
+@click.option("--all", "generate_all", is_flag=True, help="Regenerate all DXF files for every paper/card/variant combination.")
+@click.option("--new", "generate_new", is_flag=True, help="Generate DXF files only for missing templates (default behavior).")
 @click.option("--optimize", "optimize_all", is_flag=True, help="Generate DXF files for all combinations, optimizing orientation for maximum cards.")
 def batch(generate_all, generate_new, optimize_all):
-    """Batch generate DXF files to cutting_templates/ directory structure."""
+    """Batch generate DXF files to cutting_templates/ directory structure.
+
+    By default, generates only missing templates (--new behavior).
+    """
     config = load_layout_config()
     out = OUTPUT_DIR
 
-    # Validate that exactly one flag is provided
+    # Validate that at most one flag is provided
     flags = [generate_all, generate_new, optimize_all]
-    if sum(flags) != 1:
-        raise click.UsageError("Provide exactly one of: --all, --new, or --optimize")
+    if sum(flags) > 1:
+        raise click.UsageError("Provide at most one of: --all, --new, or --optimize")
+
+    # Default to --new if no flags provided
+    if sum(flags) == 0:
+        generate_new = True
 
     if optimize_all:
         generate_all_optimized(config, out)
