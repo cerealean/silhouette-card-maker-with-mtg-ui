@@ -2,6 +2,9 @@
 """
 DXF to Studio3 Converter with Full Automation
 
+**Windows Only** - This script uses GUI automation to control Silhouette Studio
+on Windows. It will not work on macOS or Linux.
+
 This script automates Silhouette Studio with mouse interactions for:
 - Cutting mat selection (12x12 or 12x24)
 - Custom paper size entry
@@ -29,12 +32,23 @@ from pathlib import Path
 from dataclasses import dataclass
 from typing import Optional
 from enum import Enum
+import platform
 
 import click
 
 from enums import Orientation, Variant
 from utilities import load_layout_config, get_all_paper_size_names, resolve_paper_size_alias, LayoutConfig, template_name
 import size_convert
+
+# Platform check - this script only works on Windows
+if platform.system() != "Windows":
+    print(f"Error: dxf_to_studio3.py only works on Windows (current platform: {platform.system()})", file=sys.stderr)
+    print("", file=sys.stderr)
+    print("This script uses GUI automation to control Silhouette Studio, which requires Windows.", file=sys.stderr)
+    print("To convert DXF files to .studio3 format on macOS/Linux, you must:", file=sys.stderr)
+    print("  1. Manually open the DXF file in Silhouette Studio", file=sys.stderr)
+    print("  2. Follow the steps in hugo/content/miscellaneous/template.md", file=sys.stderr)
+    sys.exit(1)
 
 # pyautogui: Used for mouse/keyboard automation (clicking UI elements, typing, hotkeys).
 # FAILSAFE=True enables abort-by-moving-mouse-to-corner safety feature.
