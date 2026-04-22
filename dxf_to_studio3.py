@@ -13,7 +13,8 @@ This script automates Silhouette Studio with mouse interactions for:
 - Registration mark settings
 
 Usage:
-    python dxf_to_studio3.py convert input.dxf output.studio3 --paper_size letter
+    python dxf_to_studio3.py single input.dxf output.studio3 --unit mm --paper_size letter
+    python dxf_to_studio3.py batch --unit mm
     python dxf_to_studio3.py calibrate
 
 Window Size Strategy:
@@ -892,9 +893,9 @@ def cli():
 @click.option("--action_delay", type=float, default=ACTION_DELAY, show_default=True, help="Delay between UI actions (seconds).")
 @click.option("--calibration_path", type=click.Path(), default=None, help="Path to calibration JSON.")
 @click.option("--studio_path", default=DEFAULT_STUDIO_PATH, show_default=True, help="Path to Silhouette Studio executable.")
-def convert(input_file, output_file, paper_size, orientation, no_center, registration, unit,
-            reg_length, reg_thickness, reg_inset, action_delay, calibration_path, studio_path):
-    """Convert a DXF file to .studio3 with paper size setup and registration marks."""
+def single(input_file, output_file, paper_size, orientation, no_center, registration, unit,
+           reg_length, reg_thickness, reg_inset, action_delay, calibration_path, studio_path):
+    """Convert a single DXF file to .studio3 with paper size setup and registration marks."""
     orient = Orientation(orientation)
     reg_settings = None
     if registration:
