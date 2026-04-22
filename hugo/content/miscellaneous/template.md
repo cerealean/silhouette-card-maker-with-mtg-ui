@@ -50,10 +50,10 @@ Both metric (`mm`) and imperial (`in`) units are accepted. This generates the DX
 
 Once the size is in `layouts.json`, use the `batch` command to generate DXF files.
 
-Generate only missing templates:
+Generate only missing templates (default):
 
 ```sh
-python generate_dxf.py batch --new
+python generate_dxf.py batch
 ```
 
 Regenerate all templates:
