@@ -82,14 +82,39 @@ class CuttingMat(Enum):
 class RegistrationSettings:
     """Settings for registration marks.
 
+    All numeric values must be in inches, as Silhouette Studio's page dimensions
+    are always set in inches by this script.
+
     Values are clamped by Silhouette Studio to its allowed range,
-    so 0 gives the minimum and 100 gives the maximum regardless
-    of whether the units are set to inches or mm.
+    so 0 gives the minimum and any very large value gives the maximum.
     """
     enabled: bool = True
-    length: float = 0  # 0 will default to minimum allowed by Silhouette Studio
-    thickness: float = 0  # 0 will default to minimum allowed by Silhouette Studio
-    inset: float = 0  # 0 will default to minimum allowed by Silhouette Studio
+    length: float = 0  # In inches. 0 will default to minimum allowed by Silhouette Studio
+    thickness: float = 0  # In inches. 0 will default to minimum allowed by Silhouette Studio
+    inset: float = 0  # In inches. 0 will default to minimum allowed by Silhouette Studio
+
+
+def convert_reg_settings_to_inches(settings: Optional[RegistrationSettings], from_unit: str) -> Optional[RegistrationSettings]:
+    """Convert registration settings from specified unit to inches.
+
+    Args:
+        settings: Registration settings to convert, or None.
+        from_unit: Source unit ("mm" or "in").
+
+    Returns:
+        New RegistrationSettings with values in inches, or None if input was None.
+    """
+    if settings is None or from_unit == "in":
+        return settings
+
+    # Convert from mm to inches using the same conversion factor as size_convert
+    MM_TO_IN = 1 / 25.4
+    return RegistrationSettings(
+        enabled=settings.enabled,
+        length=settings.length * MM_TO_IN if settings.length else 0,
+        thickness=settings.thickness * MM_TO_IN if settings.thickness else 0,
+        inset=settings.inset * MM_TO_IN if settings.inset else 0
+    )
 
 
 def determine_cutting_mat(width_in: float, height_in: float) -> CuttingMat:
@@ -857,9 +882,9 @@ def cli():
 @click.option("--orientation", type=click.Choice([o.value for o in Orientation], case_sensitive=False), default=Orientation.LANDSCAPE.value, show_default=True, help="Paper orientation.")
 @click.option("--no_center", is_flag=True, help="Don't center paths to page.")
 @click.option("--registration", is_flag=True, help="Enable registration marks.")
-@click.option("--reg_length", type=float, default=0, show_default=True, help="Registration mark length. 0 = minimum allowed by Silhouette Studio (unit depends on SS settings).")
-@click.option("--reg_thickness", type=float, default=0, show_default=True, help="Registration mark thickness. 0 = minimum allowed by Silhouette Studio (unit depends on SS settings).")
-@click.option("--reg_inset", type=float, default=0, show_default=True, help="Registration mark inset. 0 = minimum allowed by Silhouette Studio (unit depends on SS settings).")
+@click.option("--reg_length", type=float, default=0, show_default=True, help="Registration mark length in inches. 0 = minimum allowed by Silhouette Studio.")
+@click.option("--reg_thickness", type=float, default=0, show_default=True, help="Registration mark thickness in inches. 0 = minimum allowed by Silhouette Studio.")
+@click.option("--reg_inset", type=float, default=0, show_default=True, help="Registration mark inset in inches. 0 = minimum allowed by Silhouette Studio.")
 @click.option("--action_delay", type=float, default=ACTION_DELAY, show_default=True, help="Delay between UI actions (seconds). Increase if Silhouette Studio is slow.")
 @click.option("--calibration_path", type=click.Path(), default=None, help="Path to calibration JSON. Default: assets/gui_coordinates.json.")
 @click.option("--studio_path", default=DEFAULT_STUDIO_PATH, show_default=True, help="Path to Silhouette Studio executable.")
@@ -1125,6 +1150,8 @@ def batch(unit, studio_path, action_delay, calibration_path, generate_new, dry_r
                 length=max_len if max_len is not None else 0,
                 thickness=100,
             )
+            # Convert registration settings to inches (paper dimensions are always in inches)
+            reg_settings = convert_reg_settings_to_inches(reg_settings, unit)
 
             try:
                 automation.convert(
