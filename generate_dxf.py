@@ -59,26 +59,25 @@ def generate_single_dxf(
     card_def = config.card_sizes[card_size]
     paper_def = config.paper_sizes[paper_size]
     layout_def = config.layouts[paper_size][card_size][variant_str]
-    reg = config.defaults.registration
     ppi = config.ppi
 
-    # Use appropriate inset for variant
+    # Use appropriate registration settings for variant
     if variant_str == Variant.BORDERLESS.value:
-        template_inset = config.defaults.registration.borderless.inset
+        variant_reg = config.defaults.registration.borderless
     else:
-        template_inset = config.defaults.registration.default.inset
+        variant_reg = config.defaults.registration.default
 
     orientation = layout_def.orientation
     version = layout_def.version
 
-    total_length_mm = size_convert.size_to_mm(reg.length) + page_manager.REG_PADDING_MM
+    total_length_mm = size_convert.size_to_mm(variant_reg.length) + page_manager.REG_PADDING_MM
     computed = page_manager.generate_layout(
         orientation=orientation,
         card_width=card_def.width,
         card_height=card_def.height,
         paper_width=paper_def.width,
         paper_height=paper_def.height,
-        inset=template_inset,
+        inset=variant_reg.inset,
         length=f"{total_length_mm}mm",
         ppi=ppi,
     )
@@ -436,15 +435,14 @@ def generate_all_optimized(config: LayoutConfig, out: Path):
 
             for variant, layout_def in variants.items():
                 try:
-                    reg = config.defaults.registration
-                    ppi = config.ppi
-                    total_length_mm = size_convert.size_to_mm(reg.length) + page_manager.REG_PADDING_MM
-
-                    # Use appropriate inset for variant
+                    # Use appropriate registration settings for variant
                     if variant == Variant.BORDERLESS.value:
-                        template_inset = config.defaults.registration.borderless.inset
+                        variant_reg = config.defaults.registration.borderless
                     else:
-                        template_inset = config.defaults.registration.default.inset
+                        variant_reg = config.defaults.registration.default
+
+                    ppi = config.ppi
+                    total_length_mm = size_convert.size_to_mm(variant_reg.length) + page_manager.REG_PADDING_MM
 
                     version = layout_def.version
 
@@ -464,7 +462,7 @@ def generate_all_optimized(config: LayoutConfig, out: Path):
                             card_def.height,
                             paper_def.width,
                             paper_def.height,
-                            inset=template_inset,
+                            inset=variant_reg.inset,
                             length=f"{total_length_mm}mm",
                             ppi=ppi,
                             preferred=preferred,
