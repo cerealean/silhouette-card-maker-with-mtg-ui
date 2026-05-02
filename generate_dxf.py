@@ -39,7 +39,7 @@ LAYOUTS_PATH = SCRIPT_DIR / "assets" / "layouts.json"
 def borderless_fits_12x24_mat(paper_width: str, paper_height: str) -> bool:
     """Return True if the virtual borderless paper size fits within the 12x24 mat.
 
-    Borderless templates add 14mm to each actual paper dimension. For papers that
+    Borderless templates add 12mm to each actual paper dimension. For papers that
     require the 12x24 mat, the virtual size must still fit within it (min dim ≤ 12in,
     max dim ≤ 24in) so that "Constrain Media to Cutting Mat" can remain ON in
     Silhouette Studio during conversion. See GitHub issue #136 for full details.
@@ -47,8 +47,8 @@ def borderless_fits_12x24_mat(paper_width: str, paper_height: str) -> bool:
     This restriction will be lifted in the future by always leaving constrain OFF
     and assuming portrait mat orientation, which is consistent across all mat types.
     """
-    virtual_w_in = (size_convert.size_to_mm(paper_width) + 14.0) / 25.4
-    virtual_h_in = (size_convert.size_to_mm(paper_height) + 14.0) / 25.4
+    virtual_w_in = (size_convert.size_to_mm(paper_width) + 12.0) / 25.4
+    virtual_h_in = (size_convert.size_to_mm(paper_height) + 12.0) / 25.4
     return min(virtual_w_in, virtual_h_in) <= 12.0 and max(virtual_w_in, virtual_h_in) <= 24.0
 
 layout_config = load_layout_config()
@@ -388,7 +388,7 @@ def batch(generate_all, generate_new, optimize_all):
                     continue
 
                 # For borderless templates on papers that need the 12x24 mat, skip if the
-                # virtual paper size (+14mm each side) would exceed the 12x24 mat.
+                # virtual paper size (+12mm each dimension) would exceed the 12x24 mat.
                 # When the virtual size exceeds the mat, "Constrain Media to Cutting Mat"
                 # must be disabled to enter the dimensions — but disabling constrain causes
                 # the 12x24 mat to ignore landscape orientation (GitHub issue #136).
@@ -476,7 +476,7 @@ def generate_all_optimized(config: LayoutConfig, out: Path):
 
             for variant, layout_def in variants.items():
                 # For borderless templates on papers that need the 12x24 mat, skip if the
-                # virtual paper size (+14mm each side) would exceed the 12x24 mat.
+                # virtual paper size (+12mm each dimension) would exceed the 12x24 mat.
                 # See batch() and GitHub issue #136 for full explanation.
                 # TODO (#136): Remove this restriction once all templates use unconstrained
                 # mode with portrait mat orientation.

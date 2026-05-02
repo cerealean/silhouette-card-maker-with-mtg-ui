@@ -130,9 +130,9 @@ def determine_cutting_mat(width_in: float, height_in: float) -> CuttingMat:
 def adjust_paper_for_borderless(paper_width: str, paper_height: str) -> tuple[str, str]:
     """Adjust paper dimensions for borderless templates.
 
-    Borderless templates use a 3mm inset, but Silhouette Studio's minimum is 10mm.
-    To work around this, we tell Silhouette Studio the paper is 14mm larger
-    (7mm on each side), so its 10mm inset becomes an effective 3mm inset on the
+    Borderless templates use a 4mm inset, but Silhouette Studio's minimum is 10mm.
+    To work around this, we tell Silhouette Studio the paper is 12mm larger
+    (6mm on each side), so its 10mm inset becomes an effective 4mm inset on the
     actual paper.
 
     Args:
@@ -140,14 +140,14 @@ def adjust_paper_for_borderless(paper_width: str, paper_height: str) -> tuple[st
         paper_height: Paper height as a unit string (e.g., "215.9mm", "8.5in").
 
     Returns:
-        (adjusted_width, adjusted_height) as unit strings with 14mm added to each dimension.
+        (adjusted_width, adjusted_height) as unit strings with 12mm added to each dimension.
     """
-    # Convert to mm, add 14mm, convert back to string
+    # Convert to mm, add 12mm, convert back to string
     width_mm = size_convert.size_to_mm(paper_width)
     height_mm = size_convert.size_to_mm(paper_height)
 
-    adjusted_width_mm = width_mm + 14.0
-    adjusted_height_mm = height_mm + 14.0
+    adjusted_width_mm = width_mm + 12.0
+    adjusted_height_mm = height_mm + 12.0
 
     return f"{adjusted_width_mm}mm", f"{adjusted_height_mm}mm"
 
@@ -1229,7 +1229,7 @@ def batch(unit, studio_path, action_delay, calibration_path, generate_new, dry_r
             max_len = get_max_length_for_dxf(paper_size, card_size, variant, config, unit)
 
             # For borderless templates, adjust paper size to trick Silhouette Studio
-            # into using a 3mm effective inset (by using 10mm inset on larger virtual paper)
+            # into using a 4mm effective inset (by using 10mm inset on larger virtual paper)
             if variant == Variant.BORDERLESS:
                 # Skip if the virtual paper size exceeds the 12x24 mat (see GitHub issue #136).
                 # TODO (#136): Remove this skip once templates use unconstrained mode.

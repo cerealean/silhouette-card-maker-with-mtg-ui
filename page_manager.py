@@ -275,6 +275,13 @@ def select_best_margins(
     Corner rule:
     A layout overlaps a corner zone if the grid intrudes within corner_len
     of the inset boundary on BOTH axes simultaneously.
+
+    For each margin strategy, three candidate (cols, rows) counts are tried:
+      1. (max_cols, max_rows) — maximum cards.
+      2. (cols_clear, max_rows) — reduce cols until x gap clears the corner zone.
+      3. (max_cols, rows_clear) — reduce rows until y gap clears the corner zone.
+    Candidates 2 and 3 are symmetric: each shrinks one axis just enough to
+    guarantee clearance on that axis, leaving the other axis at its maximum.
     """
 
     strategies = [
@@ -286,54 +293,47 @@ def select_best_margins(
     best = None
     best_count = 0
 
-    for margin_x, margin_y in strategies:
-        usable_width = page_width - 2 * margin_x
-        usable_height = page_height - 2 * margin_y
-
-        cols = compute_grid_fit(usable_width, card_width, bleed)
-        rows = compute_grid_fit(usable_height, card_height, bleed)
-
-        if cols == 0 or rows == 0:
-            continue
-
-        # Size of the grid INCLUDING bleed
+    def record_if_valid(cols, rows, margin_x, margin_y, usable_width, usable_height):
+        nonlocal best, best_count
+        if cols <= 0 or rows <= 0:
+            return
         grid_width = cols * card_width + (cols + 1) * bleed
         grid_height = rows * card_height + (rows + 1) * bleed
-
-        # Measure clearance between the inset boundary and the LEFT edge
-        # of the card grid (INCLUDING bleed).
-        #
-        # Because the grid is centered, left and right clearances
-        # are identical; checking the left side is sufficient.
-        #
-        # The corner exclusion zone must contain NOTHING — neither
-        # cards nor bleed are allowed inside it.
-        #
-        # Diagram (X axis shown; Y is identical):
-        #
-        # paper edge
-        # │
-        # │<── inset ──>│ inset boundary
-        # │             │
-        # │<── margin_x ────────────────┐
-        # │                             │
-        # │   gap_x                     │
-        # │<───────────>┌──────────────┐│
-        # │             │ grid (bleed) ││
-        # │             │  bleed card  ││
-        # │             └──────────────┘│
-
         gap_x = margin_x + (usable_width - grid_width) / 2 - inset
         gap_y = margin_y + (usable_height - grid_height) / 2 - inset
-
-        overlaps_corner = gap_x < corner_len and gap_y < corner_len
-        if overlaps_corner:
-            continue
-
+        if gap_x < corner_len and gap_y < corner_len:
+            return
         count = cols * rows
         if count > best_count:
             best_count = count
             best = (cols, rows, margin_x, margin_y, usable_width, usable_height)
+
+    for margin_x, margin_y in strategies:
+        usable_width = page_width - 2 * margin_x
+        usable_height = page_height - 2 * margin_y
+
+        max_cols = compute_grid_fit(usable_width, card_width, bleed)
+        max_rows = compute_grid_fit(usable_height, card_height, bleed)
+
+        if max_cols == 0 or max_rows == 0:
+            continue
+
+        # Candidate 1: (max_cols, max_rows)
+        record_if_valid(max_cols, max_rows, margin_x, margin_y, usable_width, usable_height)
+
+        # Candidates 2 and 3: shrink one axis until that axis clears the corner zone.
+        # Derived from gap >= corner_len:
+        #   gap_x = margin_x + (usable_w - cols*(cw+b) - b)/2 - inset >= corner_len
+        #   → cols <= (usable_w - b - 2*(corner_len - margin_x + inset)) / (cw+b)
+        # (same formula for rows/y by symmetry)
+        cols_clear = max(0, math.floor(
+            (usable_width - bleed - 2 * (corner_len - margin_x + inset)) / (card_width + bleed)
+        ))
+        rows_clear = max(0, math.floor(
+            (usable_height - bleed - 2 * (corner_len - margin_y + inset)) / (card_height + bleed)
+        ))
+        record_if_valid(cols_clear, max_rows, margin_x, margin_y, usable_width, usable_height)  # candidate 2
+        record_if_valid(max_cols, rows_clear, margin_x, margin_y, usable_width, usable_height)  # candidate 3
 
     if best is None:
         raise ValueError(
