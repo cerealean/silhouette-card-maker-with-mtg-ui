@@ -127,6 +127,7 @@ In Terminal and Powershell, the commands you run depend on which directory you a
 For Silhouette Card Maker to work, you need to go to the directory where the code is downloaded. In the following command, replace `<path to the code>` with the file path to the code.
 
 ```sh
+cd ~
 cd <path to the code>
 ```
 
@@ -134,6 +135,7 @@ cd <path to the code>
 > For example, if you unzipped the code in the `Downloads` folder, then use the following:
 >
 > ```sh
+> cd ~
 > cd Downloads/silhouette-card-maker-main/silhouette-card-maker-main
 > ```
 
@@ -327,6 +329,7 @@ In the future, simply do the following:
 4) Generate the PDF.
 
 ```sh
+cd ~
 cd <path to code>
 . venv/bin/activate
 python create_pdf.py
@@ -345,6 +348,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 5) Generate the PDF.
 
 ```powershell
+cd ~
 cd <path to code>
 .\venv\Scripts\Activate.ps1
 python create_pdf.py
