@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silhouette Card Maker &middot; MTG</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="min-h-screen bg-base-200">
+  <div class="max-w-5xl mx-auto p-4 sm:p-8">
+
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold">Silhouette Card Maker</h1>
+      <p class="text-base-content/70 mt-1">Magic: The Gathering &mdash; paste a deck URL, fetch the art, and download a print-ready PDF.</p>
+    </header>
+
+    <!-- Step 1: Fetch card art -->
+    <section class="card bg-base-100 shadow-md mb-6">
+      <div class="card-body">
+        <h2 class="card-title">
+          <span class="badge badge-primary badge-lg">1</span> Fetch card art
+        </h2>
+
+        <label class="form-control w-full">
+          <div class="label"><span class="label-text">Deck URL</span></div>
+          <input id="deck-url" type="url" placeholder="https://www.moxfield.com/decks/your-deck-id"
+                 class="input input-bordered w-full" />
+          <div class="label">
+            <span class="label-text-alt text-base-content/60">
+              Supports Aetherhub, Archidekt, Deckstats, Moxfield, MTG Goldfish, MTGJSON, Scryfall, Tapped Out, TCGPlayer.
+            </span>
+          </div>
+        </label>
+
+        <div class="collapse collapse-arrow bg-base-200 mt-2">
+          <input type="checkbox" />
+          <div class="collapse-title font-medium">Advanced fetch options</div>
+          <div class="collapse-content">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="form-control">
+                <div class="label"><span class="label-text">Prefer set(s)</span></div>
+                <input id="prefer-set" type="text" placeholder="e.g. eld woe" class="input input-bordered input-sm" />
+              </label>
+              <label class="form-control">
+                <div class="label"><span class="label-text">Ignore set(s)</span></div>
+                <input id="ignore-set" type="text" placeholder="e.g. sld" class="input input-bordered input-sm" />
+              </label>
+              <label class="form-control sm:col-span-2">
+                <div class="label"><span class="label-text">Preferred language(s)</span></div>
+                <select id="prefer-lang" multiple size="4" class="select select-bordered select-sm h-auto">
+                  {% for code, label in languages %}
+                  <option value="{{ code }}">{{ label }} ({{ code }})</option>
+                  {% endfor %}
+                </select>
+                <div class="label"><span class="label-text-alt text-base-content/60">Hold Ctrl/Cmd to select multiple. Falls back to English.</span></div>
+              </label>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mt-3">
+              {% set fetch_flags = [
+                ('ignore_set_and_collector_number', 'Ignore provided sets & collector numbers'),
+                ('prefer_older_sets', 'Prefer older sets'),
+                ('prefer_showcase', 'Prefer showcase treatment'),
+                ('prefer_extra_art', 'Prefer full / borderless / extended art'),
+                ('prefer_ub', 'Prefer Universe Beyond printings'),
+                ('ignore_ub', 'Exclude Universe Beyond printings'),
+                ('tokens', 'Fetch related tokens'),
+              ] %}
+              {% for key, label in fetch_flags %}
+              <label class="label cursor-pointer justify-start gap-3">
+                <input type="checkbox" data-flag="{{ key }}" class="checkbox checkbox-sm" />
+                <span class="label-text">{{ label }}</span>
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-actions mt-4 items-center gap-4">
+          <button id="fetch-btn" class="btn btn-primary">Fetch cards</button>
+          <span id="fetch-status" class="text-sm text-base-content/70"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Card art grid -->
+    <section id="gallery-section" class="card bg-base-100 shadow-md mb-6 hidden">
+      <div class="card-body">
+        <div class="flex items-center justify-between">
+          <h2 class="card-title">Fetched cards <span id="card-count" class="badge badge-neutral"></span></h2>
+        </div>
+        <div id="gallery" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 max-h-[28rem] overflow-y-auto p-1 rounded-box bg-base-200/50">
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 2: Create PDF -->
+    <section class="card bg-base-100 shadow-md mb-6">
+      <div class="card-body">
+        <h2 class="card-title">
+          <span class="badge badge-primary badge-lg">2</span> Create PDF
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <label class="form-control">
+            <div class="label"><span class="label-text">Card size</span></div>
+            <select id="card_size" class="select select-bordered select-sm">
+              {% for size in card_sizes %}<option value="{{ size }}">{{ size }}</option>{% endfor %}
+            </select>
+          </label>
+          <label class="form-control">
+            <div class="label"><span class="label-text">Paper size</span></div>
+            <select id="paper_size" class="select select-bordered select-sm">
+              {% for size in paper_sizes %}<option value="{{ size }}">{{ size }}</option>{% endfor %}
+            </select>
+          </label>
+          <label class="form-control">
+            <div class="label"><span class="label-text">Registration marks</span></div>
+            <select id="registration" class="select select-bordered select-sm">
+              {% for r in registrations %}<option value="{{ r }}">{{ r }}-corner</option>{% endfor %}
+            </select>
+          </label>
+        </div>
+
+        <div class="collapse collapse-arrow bg-base-200 mt-3">
+          <input type="checkbox" />
+          <div class="collapse-title font-medium">Advanced PDF options</div>
+          <div class="collapse-content">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <label class="form-control">
+                <div class="label"><span class="label-text">Specialty layout</span></div>
+                <select id="specialty" class="select select-bordered select-sm">
+                  <option value="">None</option>
+                  {% for s in specialty_layouts %}<option value="{{ s }}">{{ s }}</option>{% endfor %}
+                </select>
+              </label>
+              <label class="form-control">
+                <div class="label"><span class="label-text">Fit mode</span></div>
+                <select id="fit" class="select select-bordered select-sm">
+                  {% for f in fit_modes %}<option value="{{ f }}">{{ f }}</option>{% endfor %}
+                </select>
+              </label>
+              <label class="form-control">
+                <div class="label"><span class="label-text">Extend corners</span></div>
+                <input id="extend_corners" type="number" min="0" value="0" class="input input-bordered input-sm" />
+              </label>
+              <label class="form-control">
+                <div class="label"><span class="label-text">Crop fronts</span></div>
+                <input id="crop" type="text" placeholder="e.g. 3mm" class="input input-bordered input-sm" />
+              </label>
+              <label class="form-control">
+                <div class="label"><span class="label-text">Crop backs</span></div>
+                <input id="crop_backs" type="text" placeholder="e.g. 3mm" class="input input-bordered input-sm" />
+              </label>
+              <label class="form-control">
+                <div class="label"><span class="label-text">PPI</span></div>
+                <input id="ppi" type="number" min="0" value="300" class="input input-bordered input-sm" />
+              </label>
+              <label class="form-control">
+                <div class="label"><span class="label-text">Quality (0&ndash;100)</span></div>
+                <input id="quality" type="number" min="0" max="100" value="100" class="input input-bordered input-sm" />
+              </label>
+              <label class="form-control">
+                <div class="label"><span class="label-text">Skip indices</span></div>
+                <input id="skip" type="text" placeholder="e.g. 0, 4" class="input input-bordered input-sm" />
+              </label>
+              <label class="form-control">
+                <div class="label"><span class="label-text">Page label</span></div>
+                <input id="label" type="text" class="input input-bordered input-sm" />
+              </label>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mt-3">
+              {% set pdf_flags = [
+                ('only_fronts', 'Only fronts (exclude card backs)'),
+                ('borderless', 'Borderless (tighter margins)'),
+                ('show_outline', 'Show cutting outline'),
+                ('load_offset', 'Apply saved printer offset'),
+              ] %}
+              {% for key, label in pdf_flags %}
+              <label class="label cursor-pointer justify-start gap-3">
+                <input type="checkbox" data-flag="{{ key }}" class="checkbox checkbox-sm" />
+                <span class="label-text">{{ label }}</span>
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-actions mt-4 items-center gap-4">
+          <button id="pdf-btn" class="btn btn-secondary">Generate &amp; download PDF</button>
+          <span id="pdf-status" class="text-sm text-base-content/70"></span>
+        </div>
+      </div>
+    </section>
+
+    <div id="toast" class="toast toast-end hidden">
+      <div id="toast-alert" class="alert"><span id="toast-msg"></span></div>
+    </div>
+  </div>
+
+  <!-- Lightbox overlay for enlarged card art -->
+  <div id="lightbox" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 cursor-zoom-out">
+    <button id="lightbox-close" class="btn btn-circle btn-sm absolute top-4 right-4" aria-label="Close">✕</button>
+    <div id="lightbox-content" class="flex flex-wrap items-center justify-center gap-4 max-h-full"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
